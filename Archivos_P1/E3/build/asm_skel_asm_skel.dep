@@ -1,0 +1,2 @@
+Dependencies for Project 'asm_skel', Target 'asm_skel': (DO NOT MODIFY !)
+F (.\asm.s)(0x5C73CB7C)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__UVISION_VERSION SETA 524"--list .\listings\asm.lst --xref -o .\build\asm.o --depend .\build\asm.d)

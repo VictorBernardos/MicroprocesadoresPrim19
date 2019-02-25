@@ -1,0 +1,104 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001800        DCD              0x10001800  ; Dirección de inic
+                                                            io del stack
+    5 00000004 00000000        DCD              Reset_Handler ; Vector de reset
+                                                            
+    6 00000008         
+    7 00000008                 ALIGN
+    8 00000008                 AREA             MI_PROGRAMA, CODE, READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 4804            LDR              R0, =0x10000000
+   12 00000002 7801            LDRB             R1,[R0]     ; CARGAMOS EL DATO 
+                                                            DE R0 EN R1
+   13 00000004 1C40            ADDS             R0,R0,#1    ; SUMAMOS 1 A LA DI
+                                                            RECCION PARA PASAR 
+                                                            DE BASE A ALTURA
+   14 00000006 7802            LDRB             R2,[R0]     ; GUARDAMOS EN R2 E
+                                                            L CONTENIDO DE R0
+   15 00000008 0013            MOVS             R3,R2
+   16 0000000A         
+   17 0000000A 434B            MULS             R3,R1,R3    ; MULTIPLICAMOS R1 
+                                                            Y R2 Y LO GUARDAMOS
+                                                             EN R3
+   18 0000000C 085B            LSRS             R3, #1      ; DIVIDIMOS ENTRE ,
+                                                             DESPLAZAMIENTO LOG
+                                                            ICO A DERECHAS UNA 
+                                                            POSICION
+   19 0000000E 3007            ADDS             R0, #7      ; COMO ESTABA EN LA
+                                                             100..01, LO MOVEMO
+                                                            S A LA 100..08
+   20 00000010 8003            STRH             R3, [R0]
+   21 00000012         
+   22 00000012         forever
+   23 00000012 E7FE            B                forever
+   24 00000014         
+   25 00000014                 END
+              10000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
+ork --depend=.\build\asm.d -o.\build\asm.o --predefine="__EVAL SETA 1" --predef
+ine="__UVISION_VERSION SETA 524" --list=.\listings\asm.lst asm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file asm.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file asm.s
+   Uses
+      At line 2 in file asm.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+MI_PROGRAMA 00000000
+
+Symbol: MI_PROGRAMA
+   Definitions
+      At line 8 in file asm.s
+   Uses
+      None
+Comment: MI_PROGRAMA unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file asm.s
+   Uses
+      At line 5 in file asm.s
+      At line 9 in file asm.s
+
+forever 00000012
+
+Symbol: forever
+   Definitions
+      At line 22 in file asm.s
+   Uses
+      At line 23 in file asm.s
+Comment: forever used once
+3 symbols
+339 symbols in table

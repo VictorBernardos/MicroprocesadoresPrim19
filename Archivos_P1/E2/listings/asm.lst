@@ -1,0 +1,136 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001800        DCD              0x10001800  ; Dirección de inic
+                                                            io del stack
+    5 00000004 00000000        DCD              Reset_Handler ; Vector de reset
+                                                            
+    6 00000008         
+    7 00000008                 ALIGN
+    8 00000008                 AREA             MI_PROGRAMA, CODE, READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 4808            LDR              R0, =0x10000008
+   12 00000002 2108            MOVS             R1, #8
+   13 00000004 2200            MOVS             R2, #0
+   14 00000006 2300            MOVS             R3, #0
+   15 00000008 4C07            LDR              R4, =0X10000010
+   16 0000000A 7023            STRB             R3, [R4]
+   17 0000000C         
+   18 0000000C         bucle
+   19 0000000C         
+   20 0000000C 7805            LDRB             R5, [R0]
+   21 0000000E 086D            LSRS             R5, #1
+   22 00000010 D304            BCC              salto2
+   23 00000012         
+   24 00000012         salto1
+   25 00000012         
+   26 00000012 3901            SUBS             R1, #1
+   27 00000014 D005            BEQ              fin
+   28 00000016 3201            ADDS             R2, #1
+   29 00000018 3001            ADDS             R0, #1
+   30 0000001A E7F7            B                bucle
+   31 0000001C         
+   32 0000001C         salto2
+   33 0000001C         
+   34 0000001C 3301            ADDS             R3, #1
+   35 0000001E 7023            STRB             R3, [R4]
+   36 00000020 E7F7            B                salto1
+   37 00000022         
+   38 00000022         fin
+   39 00000022 E7FE            B                fin
+   40 00000024         
+   41 00000024                 END
+              10000008 
+              10000010 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
+ork --depend=.\build\asm.d -o.\build\asm.o --predefine="__EVAL SETA 1" --predef
+ine="__UVISION_VERSION SETA 524" --predefine="ARMCM0 SETA 1" --list=.\listings\
+asm.lst asm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file asm.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file asm.s
+   Uses
+      At line 2 in file asm.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+MI_PROGRAMA 00000000
+
+Symbol: MI_PROGRAMA
+   Definitions
+      At line 8 in file asm.s
+   Uses
+      None
+Comment: MI_PROGRAMA unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file asm.s
+   Uses
+      At line 5 in file asm.s
+      At line 9 in file asm.s
+
+bucle 0000000C
+
+Symbol: bucle
+   Definitions
+      At line 18 in file asm.s
+   Uses
+      At line 30 in file asm.s
+Comment: bucle used once
+fin 00000022
+
+Symbol: fin
+   Definitions
+      At line 38 in file asm.s
+   Uses
+      At line 27 in file asm.s
+      At line 39 in file asm.s
+
+salto1 00000012
+
+Symbol: salto1
+   Definitions
+      At line 24 in file asm.s
+   Uses
+      At line 36 in file asm.s
+Comment: salto1 used once
+salto2 0000001C
+
+Symbol: salto2
+   Definitions
+      At line 32 in file asm.s
+   Uses
+      At line 22 in file asm.s
+Comment: salto2 used once
+6 symbols
+343 symbols in table
