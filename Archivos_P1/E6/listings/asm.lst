@@ -1,0 +1,108 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001800        DCD              0x10001800  ; Dirección de inic
+                                                            io del stack
+    5 00000004 00000000        DCD              Reset_Handler ; Vector de reset
+                                                            
+    6 00000008         
+    7 00000008                 ALIGN
+    8 00000008                 AREA             MI_PROGRAMA, CODE, READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         
+   11 00000000         Reset_Handler
+   12 00000000 200A            MOVS             R0,#0x0A
+   13 00000002 210A            MOVS             R1,#0x0A
+   14 00000004 E001            B                Compara
+   15 00000006         Salto
+   16 00000006 1D49            ADDS             R1,R1,#5
+   17 00000008 1E40            SUBS             R0,R0,#1
+   18 0000000A         Compara
+   19 0000000A 2800            CMP              R0,#0x00
+   20 0000000C D1FB            BNE              Salto
+   21 0000000E         
+   22 0000000E         forever
+   23 0000000E E7FE            B                forever
+   24 00000010         
+   25 00000010                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
+ork --depend=.\build\asm.d -o.\build\asm.o --predefine="__EVAL SETA 1" --predef
+ine="__UVISION_VERSION SETA 524" --list=.\listings\asm.lst asm.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file asm.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file asm.s
+   Uses
+      At line 2 in file asm.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Compara 0000000A
+
+Symbol: Compara
+   Definitions
+      At line 18 in file asm.s
+   Uses
+      At line 14 in file asm.s
+Comment: Compara used once
+MI_PROGRAMA 00000000
+
+Symbol: MI_PROGRAMA
+   Definitions
+      At line 8 in file asm.s
+   Uses
+      None
+Comment: MI_PROGRAMA unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 11 in file asm.s
+   Uses
+      At line 5 in file asm.s
+      At line 9 in file asm.s
+
+Salto 00000006
+
+Symbol: Salto
+   Definitions
+      At line 15 in file asm.s
+   Uses
+      At line 20 in file asm.s
+Comment: Salto used once
+forever 0000000E
+
+Symbol: forever
+   Definitions
+      At line 22 in file asm.s
+   Uses
+      At line 23 in file asm.s
+Comment: forever used once
+5 symbols
+339 symbols in table
